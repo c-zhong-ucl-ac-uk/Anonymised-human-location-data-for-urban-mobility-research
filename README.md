@@ -21,9 +21,10 @@ Understanding human mobility is crucial for every aspect of daily life and the f
 Anonymised_Paper_Private/
 ├── pyproject.toml          # Project metadata and dependencies
 ├── src/                    # Main source code
-│   ├── process/            # Preprocessing scripts
-│   │   ├── preprocess.py   # Main preprocessing pipeline
-│   │   └── infomobile.py   # Supporting data processing utilities
+│   ├── activity_labelling/ # Activity labelling scripts
+│   ├── process/            # Processing scripts
+│   │   ├── primary_location.py   # Home/work location detection utilities
+│   │   └── stop_detection.py # Stop detection utilities
 │   ├── plots/              # Plotting and analysis scripts
 │   │   ├── fig2.py         # Script for figure 2
 │   │   ├── fig3_.py        # Script for figure 3
@@ -31,13 +32,12 @@ Anonymised_Paper_Private/
 │   ├── _const.py           # Constants used across scripts
 │   └── _plot_utils.py      # Helper functions for plotting
 ├── notebooks/              # Jupyter notebooks for reproduction and exploration
-│   ├── Figures_DataPaper.ipynb  # Main notebook for paper figures
 │   ├── fig-4.ipynb         # Notebook for figure 4
 │   ├── postraficated.ipynb # Post-stratification workflow
 │   └── moving_range.ipynb  # Moving range analysis examples
-├── data/                   # Data directory
-│   ├── duckdb/             # DuckDB files (intermediate/aggregate database files)
-│   └── data4report/        # Prepared files for reports/figures
+├── dataset/                # Dataset directory
+│   ├── metadata.yml        # Metadata for datasets
+│   └── zonodo.txt          # Dataset reference link
 ├── fig/                    # Generated figures (if present)
 └── docker/                 # Dockerfiles and environment-related files (optional)
 ```
@@ -52,7 +52,7 @@ cd <repository_name>
 uv sync  # env synchronization via un
 ```
 
-- Put any local or restricted datasets into the `data/` directory following the existing structure.
+- Put any local or restricted datasets into the `dataset/` directory following the existing structure.
 - The data repository contains example and preprocessed files, but some sensitive raw data are intentionally excluded.
 
 
