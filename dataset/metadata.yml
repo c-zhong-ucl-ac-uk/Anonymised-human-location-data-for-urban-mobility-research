@@ -1,0 +1,55 @@
+dataset_title: Mobile OD and Sample Trajectories
+version: 1.0
+release_date: 2025-10-25
+contributors:
+  - name: Chen Zhong
+    affiliation: UCL
+contact: chen.zhong@ucl.ac.uk
+
+description: >
+  OD flow tables at hexagonal (H3) and MSOA levels plus a small sample of
+  anonymized trajectories for reproducibility. OD files aggregate movements
+  across all activity types unless otherwise noted (e.g., travel-to-work).
+
+spatial_coverage:
+  region: Greater London Authority (GLA)
+  coordinate_system: EPSG:27700
+temporal_coverage: "2021-11 (local time: Europe/London)"
+privacy: >
+  All records are anonymized and/or aggregated. No device-level identifiers
+  are released except hashed IDs in the small trajectory sample.
+
+# ------------------------------
+# Provenance & methods
+# ------------------------------
+methods_summary: >
+  Stays are detected using a spatial threshold r1 and temporal dwell threshold; OD
+  flows are built by linking consecutive stays. Activity labels are assigned using a
+  time-aware Huff-style model that combines POI proximity within 500 m and time-of-day
+  weights; home/work inference uses recurring nighttime/daytime stays. Full details,
+  parameters, and sensitivity analyses are provided in the paper and Appendix C/E-2.
+
+processing_steps:
+  - raw_signals_cleaning
+  - stay_detection
+  - activity_labelling
+  - home_work_inference
+  - spatial_aggregation_to_hex_and_MSOA
+  - OD_construction_and_quality_checks
+
+
+# ------------------------------
+# Transparency & limitations
+# ------------------------------
+transparency_and_limitations: >
+  We acknowledge the following limitations: this dataset can exhibit significant biases related to demographic representation, app market share, device usage patterns, and geographic coverage. These biases may distort interpretations of mobility patterns if left unaddressed.
+
+usage_and_interpretation_notes: >
+  Downstream analyses should be interpreted with caution. Do not use these data to make
+  inferences about individuals or small, protected groups. Where possible, report uncertainty
+  (e.g., sensitivity to buffer/weight parameters) and validate against independent benchmarks.
+  Comparisons across geographies should control for POI coverage and network structure.
+
+data_protection_and_ethics: >
+  Records are anonymized and aggregated prior to release; no device-level trajectories are shared.
+  Small cells are suppressed or noise-added where require
